@@ -75,6 +75,10 @@ func ingestTestcase(root xmlNode) Test {
 		Properties: root.Attrs,
 	}
 
+	if root.Attrs["status"] == "notrun" && root.Attrs["result"] == "suppressed" {
+		test.Status = StatusSkipped
+	}
+	
 	for _, node := range root.Nodes {
 		switch node.XMLName.Local {
 		case "skipped":

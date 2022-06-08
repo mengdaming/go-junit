@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="5" failures="1" disabled="2" errors="0" time="1.532" timestamp="2022-06-08T17:58:17.098" name="AllTests">
+    <testsuite name="Class1" tests="3" failures="1" disabled="1" skipped="0" errors="0" time="1.019" timestamp="2022-06-08T17:58:17.098">
+        <testcase name="test_A" file="SomeTest.cpp" line="31" status="run" result="completed" time="0.507" timestamp="2022-06-08T17:58:17.098" classname="Class1" />
+        <testcase name="test_B" file="SomeTest.cpp" line="36" status="run" result="completed" time="0.511" timestamp="2022-06-08T17:58:17.606" classname="Class1">
+            <failure message="SomeTest.cpp:38&#x0A;Expected equality of these values:&#x0A;  1&#x0A;  doSomething()&#x0A;    Which is: 2" type=""><![CDATA[SomeTest.cpp:38
+Expected equality of these values:
+  1
+  doSomething()
+    Which is: 2]]></failure>
+        </testcase>
+        <testcase name="DISABLED_test_C" file="SomeTest.cpp" line="41" status="notrun" result="suppressed" time="0" timestamp="1970-01-01T01:00:00.000" classname="Class1" />
+    </testsuite>
+    <testsuite name="Class2" tests="2" failures="0" disabled="1" skipped="0" errors="0" time="0.512" timestamp="2022-06-08T17:58:18.117">
+        <testcase name="test_D" file="SomeTest.cpp" line="46" status="run" result="completed" time="0.511" timestamp="2022-06-08T17:58:18.117" classname="Class2" />
+        <testcase name="DISABLED_test_E" file="SomeTest.cpp" line="51" status="notrun" result="suppressed" time="0" timestamp="1970-01-01T01:00:00.000" classname="Class2" />
+    </testsuite>
+</testsuites>
