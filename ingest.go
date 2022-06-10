@@ -75,10 +75,12 @@ func ingestTestcase(root xmlNode) Test {
 		Properties: root.Attrs,
 	}
 
-	if root.Attrs["status"] == "notrun" && root.Attrs["result"] == "suppressed" {
+	// When parsing GoogleTest XML reports: forces GoogleTest's DISABLED_* test cases to
+	// be counted as skipped tests instead of passing tests
+	if root.Attr("status") == "notrun" && root.Attr("result") == "suppressed" {
 		test.Status = StatusSkipped
 	}
-	
+
 	for _, node := range root.Nodes {
 		switch node.XMLName.Local {
 		case "skipped":

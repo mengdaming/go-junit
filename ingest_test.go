@@ -224,30 +224,27 @@ func TestExamplesInTheWild(t *testing.T) {
 			},
 		},
 		{
-			title:    "gtest-report skipped example",
+			title:    "gtest skipped and disabled example",
 			filename: "testdata/gtest-report.xml",
 			origin:   "N/A",
 			check: func(t *testing.T, suites []Suite) {
 				assert.Len(t, suites, 2)
-				assert.Len(t, suites[0].Tests, 3)
-				assert.Equal(t, 3, suites[0].Totals.Tests)
-				assert.Equal(t, 1, suites[0].Totals.Passed)
-				assert.Equal(t, 1, suites[0].Totals.Failed)
-				assert.Equal(t, 1, suites[0].Totals.Skipped)
-
-				assert.Equal(t, "Class1", suites[0].Name)
-				assert.Equal(t, "test_A", suites[0].Tests[0].Name)
-				assert.Equal(t, "test_B", suites[0].Tests[1].Name)
-				assert.Equal(t, "DISABLED_test_C", suites[0].Tests[2].Name)
-
-				assert.Len(t, suites[1].Tests, 2)
-				assert.Equal(t, 2, suites[1].Totals.Tests)
-				assert.Equal(t, 1, suites[1].Totals.Passed)
-				assert.Equal(t, 0, suites[1].Totals.Failed)
-				assert.Equal(t, 1, suites[1].Totals.Skipped)
-				assert.Equal(t, "Class2", suites[1].Name)
-				assert.Equal(t, "test_D", suites[1].Tests[0].Name)
-				assert.Equal(t, "DISABLED_test_E", suites[1].Tests[1].Name)
+				assert.Equal(t, Totals{
+					Tests:    3,
+					Passed:   0,
+					Skipped:  2, // 1 skipped + 1 disabled
+					Failed:   1,
+					Error:    0,
+					Duration: 513 * time.Millisecond,
+				}, suites[0].Totals)
+				assert.Equal(t, Totals{
+					Tests:    2,
+					Passed:   1,
+					Skipped:  1, // 0 skipped + 1 disabled
+					Failed:   0,
+					Error:    0,
+					Duration: 510 * time.Millisecond,
+				}, suites[1].Totals)
 			},
 		},
 	}
