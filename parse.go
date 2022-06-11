@@ -63,7 +63,7 @@ func extractContent(data []byte) ([]byte, error) {
 	)
 
 	for {
-		if mode == 0 {
+		if mode == 0 { //nolint:nestif
 			offset := bytes.Index(data, cdataStart)
 			if offset == -1 {
 				// The string "<![CDATA[" does not appear in the data. Unescape all remaining data and finish
@@ -73,6 +73,7 @@ func extractContent(data []byte) ([]byte, error) {
 				}
 
 				output = append(output, html.UnescapeString(string(data))...)
+
 				break
 			}
 

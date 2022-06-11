@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestExamplesInTheWild(t *testing.T) {
+func TestExamplesInTheWild(t *testing.T) { //nolint:maintidx
 	tests := []struct {
 		title    string
 		filename string
@@ -25,6 +25,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/catchsoftware.xml",
 			origin:   "https://help.catchsoftware.com/display/ET/JUnit+Format",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 2)
 				assert.Len(t, suites[0].Tests, 0)
 				assert.Len(t, suites[1].Tests, 3)
@@ -36,6 +37,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/cubic.xml",
 			origin:   "https://llg.cubic.org/docs/junit/",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 1)
 				assert.Equal(t, "STDOUT text", suites[0].SystemOut)
@@ -49,6 +51,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/go-junit-report.xml",
 			origin:   "https://github.com/jstemmer/go-junit-report/blob/master/testdata/06-report.xml",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 2)
 				assert.Len(t, suites[0].Tests, 2)
 				assert.Len(t, suites[1].Tests, 2)
@@ -62,6 +65,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/go-junit-report-skipped.xml",
 			origin:   "https://github.com/jstemmer/go-junit-report/blob/master/testdata/03-report.xml",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 2)
 				assert.Equal(t, "package/name", suites[0].Name)
@@ -74,6 +78,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/ibm.xml",
 			origin:   "https://www.ibm.com/support/knowledgecenter/en/SSQ2R2_14.2.0/com.ibm.rsar.analysis.codereview.cobol.doc/topics/cac_useresults_junit.html",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 1)
 				assert.EqualError(t, suites[0].Tests[0].Error, "\nWARNING: Use a program name that matches the source file name\nCategory: COBOL Code Review – Naming Conventions\nFile: /project/PROGRAM.cbl\nLine: 2\n      ")
@@ -84,6 +89,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/jenkinsci.xml",
 			origin:   "https://github.com/jenkinsci/junit-plugin/blob/master/src/test/resources/hudson/tasks/junit/junit-report-1463.xml",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 6)
 				assert.Equal(t, "\n", suites[0].Properties["line.separator"])
@@ -95,6 +101,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/nose2.xml",
 			origin:   "https://nose2.readthedocs.io/en/latest/plugins/junitxml.html",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 25)
 				assert.EqualError(t, suites[0].Tests[22].Error, "Traceback (most recent call last):\n  File \"nose2/tests/functional/support/scenario/tests_in_package/pkg1/test/test_things.py\", line 13, in test_typeerr\n    raise TypeError(\"oops\")\nTypeError: oops\n")
@@ -105,6 +112,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/python-junit-xml.xml",
 			origin:   "https://pypi.org/project/junit-xml/",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 1)
 				assert.Equal(t, "\n                I am stdout!\n            ", suites[0].Tests[0].SystemOut)
@@ -116,6 +124,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/surefire.xml",
 			origin:   "https://gist.github.com/rwbergstrom/6f0193b1a12dca9d358e6043ee6abba4",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 1)
 				assert.Equal(t, "\n", suites[0].Properties["line.separator"])
@@ -147,6 +156,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			title:    "fastlane example",
 			filename: "testdata/fastlane-trainer.xml",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 4)
 
@@ -176,6 +186,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			title:    "phpunit example",
 			filename: "testdata/phpunit.xml",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 1)
 				assert.Len(t, suites[0].Tests, 0)
 				assert.Len(t, suites[0].Suites, 1)
@@ -228,6 +239,7 @@ func TestExamplesInTheWild(t *testing.T) {
 			filename: "testdata/gtest-report.xml",
 			origin:   "N/A",
 			check: func(t *testing.T, suites []Suite) {
+				t.Helper()
 				assert.Len(t, suites, 2)
 				assert.Equal(t, Totals{
 					Tests:    3,
