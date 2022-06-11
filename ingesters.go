@@ -40,7 +40,7 @@ func IngestDir(directory string) ([]Suite, error) {
 // IngestFiles will parse the given XML files and return a slice of all
 // contained JUnit test suite definitions.
 func IngestFiles(filenames []string) ([]Suite, error) {
-	var all = make([]Suite, 0)
+	all := make([]Suite, 0)
 
 	for _, filename := range filenames {
 		suites, err := IngestFile(filename)
@@ -60,7 +60,9 @@ func IngestFile(filename string) ([]Suite, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
 
 	return IngestReader(file)
 }

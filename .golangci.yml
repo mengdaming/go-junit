@@ -4,6 +4,19 @@ linters:
   - lll
   - wsl
   - gomnd
+  - interfacer
+  - golint
+  - exhaustivestruct
+  - scopelint
+  - maligned
+  - wrapcheck
+  - gofumpt
+  - testpackage
+  - paralleltest
+  - exhaustruct
+  - goerr113
+  - nlreturn
+  - thelper
 
 issues:
   exclude-use-default: true
