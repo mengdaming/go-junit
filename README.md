@@ -2,6 +2,7 @@
 [![Godoc][godoc-badge]][godoc-link]
 [![Go Report Card][go-report-badge]][go-report-link]
 [![CircleCI][circleci-badge]][circleci-link]
+[![CodeQL](https://github.com/mengdaming/go-junit/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/mengdaming/go-junit/actions/workflows/codeql-analysis.yml)
 
 # Go JUnit
 
