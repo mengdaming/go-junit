@@ -3,7 +3,7 @@
 # Enforce usage of the Go modules system.
 export GO111MODULE := on
 
-# Determine where `go get` will install binaries to.
+# Determine where `go install` will install binaries to.
 GOBIN := $(HOME)/go/bin
 ifdef GOPATH
 	GOBIN := $(GOPATH)/bin
@@ -18,7 +18,7 @@ all: test lint
 # Install binary for go-junit-report.
 go-junit-report := $(GOBIN)/go-junit-report
 $(go-junit-report):
-	cd /tmp && go get -u github.com/jstemmer/go-junit-report
+	go install github.com/jstemmer/go-junit-report@latest
 
 # Install binary for golangci-lint.
 golangci-lint := $(GOBIN)/golangci-lint
@@ -28,7 +28,7 @@ $(golangci-lint):
 # Install binary for goimports.
 goimports := $(GOBIN)/goimports
 $(goimports):
-	cd /tmp && go get -u golang.org/x/tools/cmd/goimports
+	go install golang.org/x/tools/cmd/goimports@latest
 
 #### Linting ####
 
